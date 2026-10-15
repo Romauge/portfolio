@@ -1,6 +1,7 @@
 ---
 import ThemeToggle from '../components/ThemeToggle.astro';
 import PixelGround from '../components/PixelGround.astro';
+import Icon from '../components/Icon.astro';
 import { SITE } from '../site';
 
 const { title, bodyClass = 'header-fixed' } = Astro.props;
@@ -86,6 +87,7 @@ const year = new Date().getFullYear();
     <footer id="footer" class="ui-footer">
         <div class="ui-wrap">
             <span>© {year} {SITE.author}</span>
+            <a class="ui-footer-link" href="https://www.linkedin.com/in/romain-a-b878b537/" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn (nouvel onglet)"><Icon name="linkedin-2" /></a>
         </div>
         <PixelGround class="ui-ground" />
     </footer>

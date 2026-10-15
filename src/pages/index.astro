@@ -9,10 +9,10 @@ const long = await getEntry('home', 'bio-long');
 const projets = await getProjets();
 
 const experiences = [
-    { company: 'Matera', role: 'Staff product designer.', site: 'matera.eu', url: 'https://www.matera.eu', years: '2021 - actuel' },
-    { company: 'Bridge', role: 'Product designer.', site: 'bridgeapi.io', url: 'https://bridgeapi.io', years: '2019 - 2021' },
-    { company: 'Bankin’', role: 'Product designer.', site: 'bankin.com', url: 'https://bankin.com', years: '2019 - 2021' },
-    { company: 'Brevo', role: 'UI & UX designer.', site: 'brevo.com', url: 'https://www.brevo.com', years: '2016 - 2019' },
+    { company: 'Matera', role: 'Staff product designer.', url: 'https://www.matera.eu', years: '2021 - actuel' },
+    { company: 'Bridge', role: 'Product designer.', url: 'https://bridgeapi.io', years: '2019 - 2021' },
+    { company: 'Bankin’', role: 'Product designer.', url: 'https://bankin.com', years: '2019 - 2021' },
+    { company: 'Brevo', role: 'UI & UX designer.', url: 'https://www.brevo.com', years: '2016 - 2019' },
     { company: 'Plyce', role: 'Webdesigner.', years: '2014 - 2016' },
 ];
 ---
@@ -63,11 +63,12 @@ const experiences = [
                 <li>
                     <div class="ui-job">
                         <span class="ui-job-main">
-                            <span class="ui-job-company">{e.company}</span>
+                            {e.url
+                                ? <a class="ui-job-company" href={e.url} target="_blank" rel="noopener noreferrer">{e.company}<span class="ui-job-arrow" aria-hidden="true"> ↗</span></a>
+                                : <span class="ui-job-company">{e.company}</span>}
                             <span class="ui-job-role">{e.role}</span>
                         </span>
                         <span class="ui-job-meta">
-                            {e.url && <a class="ui-job-site" href={e.url} target="_blank" rel="noopener noreferrer">{e.site} ↗</a>}
                             <span class="ui-job-years">{e.years}</span>
                         </span>
                     </div>

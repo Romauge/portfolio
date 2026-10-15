@@ -452,22 +452,23 @@ main#start > .section { margin-bottom: 0; }
 .ui-avatar, .ui-art-avatar { border-radius: 9999px; overflow: hidden; background: var(--ui-avatar-bg); }
 .ui-avatar img, .ui-art-avatar img { object-fit: cover; }
 
-/* Où j'ai travaillé : lignes séparées par un filet, nom + rôle à gauche, site + années à droite */
+/* Où j'ai travaillé : nom (lien) + poste à gauche, années à droite, sans filets */
 .ui-jobs { list-style: none; margin: 0; padding: 0; }
-.ui-jobs li:last-child { border-bottom: 0; }
-.ui-jobs li { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--site-divider); }
-.ui-job { display: flex; flex-direction: column; gap: 2px 16px; padding: 14px 0; text-decoration: none; font-weight: 400; }
+.ui-jobs li { list-style: none; margin: 0; padding: 0; }
+.ui-job { display: flex; flex-direction: column; gap: 2px 16px; padding: 8px 0; font-weight: 400; }
 .ui-job-main { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 2px 12px; }
 .ui-job-role { font-weight: 400; }
-.ui-job-meta { display: flex; flex: none; align-items: baseline; gap: 12px; font-weight: 400; white-space: nowrap; }
+.ui-job-meta { flex: none; font-weight: 400; white-space: nowrap; }
 .ui-job-years { font-variant-numeric: tabular-nums; }
-.ui-job-site { color: var(--site-text-muted); font-weight: 400; text-decoration: none; }
-.ui-job-site:hover, .ui-job-site:focus-visible { color: var(--site-text-strong); text-decoration: none; }
+a.ui-job-company { text-decoration: none; }
+.ui-job-arrow { color: var(--site-text-muted); font-weight: 400; }
+a.ui-job-company:hover, a.ui-job-company:focus-visible { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 @media (min-width: 640px) {
   .ui-job { flex-direction: row; align-items: baseline; }
   .ui-job-main { flex-direction: row; align-items: baseline; }
-  .ui-job-meta { display: grid; grid-template-columns: 7rem 6.5rem; column-gap: 12px; }
-  .ui-job-site { grid-column: 1; justify-self: end; }
-  .ui-job-years { grid-column: 2; justify-self: end; }
 }
+
+/* Pied de page : copyright à gauche, LinkedIn à droite */
+.ui-footer .ui-wrap { display: flex; align-items: center; justify-content: space-between; }
+#footer .ui-footer-link { display: inline-flex; color: var(--site-text-muted); text-decoration: none; }
 
