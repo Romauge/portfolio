@@ -1,0 +1,36 @@
+---
+import { getEntry } from 'astro:content';
+import Icon from './Icon.astro';
+// Page d'article / de projet : barre de retour vers l'accueil (chevron, avatar, nom), titre, contenu, précédent / suivant.
+// `prev` et `next` : { href, title } (facultatifs).
+const { title, html, prev, next } = Astro.props;
+const hero = await getEntry('home', 'hero');
+const ownerName = hero?.data.name ?? '';
+---
+<section id="body-wrapper" class="section">
+    <article class="ui-article h-entry">
+        <a class="ui-art-id" href="/" aria-label="Retour à l'accueil">
+            <Icon name="chevron-left" class="ui-art-back" />
+            <span class="ui-art-avatar" aria-hidden="true"><img src="/images/avatar.svg" alt="" width="32" height="32" /></span>
+            <span class="ui-art-name">{ownerName}</span>
+        </a>
+        <h1 class="p-name">{title}</h1>
+        <div class="ui-article-body e-content" set:html={html} />
+        {(prev || next) && (
+            <nav class="ui-pager" aria-label="Autres pages">
+                {prev ? (
+                    <a class="ui-pager-link" href={prev.href} rel="prev">
+                        <span class="ui-pager-label">Précédent</span>
+                        <span class="ui-pager-title">{prev.title}</span>
+                    </a>
+                ) : <span />}
+                {next ? (
+                    <a class="ui-pager-link ui-pager-next" href={next.href} rel="next">
+                        <span class="ui-pager-label">Suivant</span>
+                        <span class="ui-pager-title">{next.title}</span>
+                    </a>
+                ) : <span />}
+            </nav>
+        )}
+    </article>
+</section>

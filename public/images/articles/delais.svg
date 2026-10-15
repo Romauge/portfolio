@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1288 420" role="img" aria-labelledby="t2">
+<title id="t2">Cinq lignes démarrent chacune 60 ms après la précédente et durent 400 ms.</title>
+<rect width="1288" height="420" fill="#fdfdfc"/>
+<rect x="80.0" y="64" width="560.0" height="34" fill="#585856" opacity="0.35"/>
+<text x="64" y="89" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="400" fill="#8b8b88" text-anchor="end">1</text>
+<rect x="164.0" y="120" width="560.0" height="34" fill="#585856" opacity="0.51"/>
+<text x="64" y="145" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="400" fill="#8b8b88" text-anchor="end">2</text>
+<rect x="248.0" y="176" width="560.0" height="34" fill="#585856" opacity="0.67"/>
+<text x="64" y="201" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="400" fill="#8b8b88" text-anchor="end">3</text>
+<rect x="332.0" y="232" width="560.0" height="34" fill="#585856" opacity="0.83"/>
+<text x="64" y="257" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="400" fill="#8b8b88" text-anchor="end">4</text>
+<rect x="416.0" y="288" width="560.0" height="34" fill="#585856" opacity="0.99"/>
+<text x="64" y="313" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="400" fill="#8b8b88" text-anchor="end">5</text>
+<path d="M80 356 H1200.0" stroke="#585856" stroke-width="2"/>
+<path d="M80.0 356 v10" stroke="#585856" stroke-width="2"/>
+<text x="80.0" y="396" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="middle">0 ms</text>
+<path d="M220.0 356 v10" stroke="#585856" stroke-width="2"/>
+<text x="220.0" y="396" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="middle">100</text>
+<path d="M360.0 356 v10" stroke="#585856" stroke-width="2"/>
+<text x="360.0" y="396" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="middle">200</text>
+<path d="M500.0 356 v10" stroke="#585856" stroke-width="2"/>
+<text x="500.0" y="396" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="middle">300</text>
+<path d="M640.0 356 v10" stroke="#585856" stroke-width="2"/>
+<text x="640.0" y="396" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="middle">400</text>
+<path d="M780.0 356 v10" stroke="#585856" stroke-width="2"/>
+<text x="780.0" y="396" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="middle">500</text>
+<path d="M920.0 356 v10" stroke="#585856" stroke-width="2"/>
+<text x="920.0" y="396" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="middle">600</text>
+<path d="M1060.0 356 v10" stroke="#585856" stroke-width="2"/>
+<text x="1060.0" y="396" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="middle">700</text>
+<path d="M1200.0 356 v10" stroke="#585856" stroke-width="2"/>
+<text x="1200.0" y="396" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="middle">800</text>
+<path d="M80.0 52 V40 H164.0 V52" stroke="#585856" stroke-width="2" fill="none"/>
+<text x="122.0" y="30" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="500" fill="#585856" text-anchor="middle">60 ms</text>
+</svg>

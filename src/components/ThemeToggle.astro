@@ -1,0 +1,11 @@
+---
+import Icon from './Icon.astro';
+// Choix du mode d'affichage : clair, sombre ou système (mini barre à trois boutons).
+---
+<div class="ui-theme" role="toolbar" aria-label="Apparence">
+    <div class="ui-theme-bar">
+        <button type="button" data-theme-option="light" aria-label="Clair" title="Clair" aria-pressed="false"><Icon name="sun" /></button>
+        <button type="button" data-theme-option="dark" aria-label="Sombre" title="Sombre" aria-pressed="false"><Icon name="moon" /></button>
+        <button type="button" data-theme-option="auto" aria-label="Système" title="Système" aria-pressed="false"><Icon name="invert" /></button>
+    </div>
+</div>

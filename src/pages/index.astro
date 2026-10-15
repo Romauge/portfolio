@@ -1,0 +1,52 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import { getProjets, htmlOf, subtitleHtml } from '../lib/content';
+
+const hero = await getEntry('home', 'hero');
+const long = await getEntry('home', 'bio-long');
+const projets = await getProjets();
+---
+<Base title="Home" bodyClass="title-center title-h1h2 header-fixed">
+    <div id="hero" class="module-anchor"></div>
+
+    <section class={`ui-intro ${hero?.data.class ?? ''}`}>
+        <div class="ui-identity">
+            <div class="ui-avatar" aria-hidden="true"><img src="/images/avatar.svg" alt="" width="64" height="64" /></div>
+            <div>
+                <h1 class="ui-name">{hero?.data.name}</h1>
+                {hero?.data.role && <p class="ui-role">{hero.data.role}</p>}
+            </div>
+        </div>
+
+        {long ? (
+            <>
+                <div class="ui-section-head">
+                    <h2 class="ui-h2">Bio</h2>
+                    <span class="ui-tabs-list" role="tablist" aria-label="Bio">
+                        <button type="button" role="tab" aria-selected="true" data-bio="default">Défaut</button>
+                        <button type="button" role="tab" aria-selected="false" data-bio="long">Longue</button>
+                    </span>
+                </div>
+                <div class="ui-prose" data-bio-panel="default" set:html={htmlOf(hero)} />
+                <div class="ui-prose" data-bio-panel="long" hidden set:html={htmlOf(long)} />
+                <script is:inline src="/js/bio-tabs.js"></script>
+            </>
+        ) : (
+            <div class="ui-prose" set:html={htmlOf(hero)} />
+        )}
+    </section>
+
+    <div id="projets" class="module-anchor"></div>
+
+    <section class="ui-section modular-work-list">
+        <h2 class="ui-h2">Projets</h2>
+        <div class="ui-projects">
+            {projets.map((p) => (
+                <ProjectRow href={`/projets/${p.id}`} title={p.data.title} subtitle={subtitleHtml(p)} image={p.data.image} />
+            ))}
+        </div>
+    </section>
+    <script is:inline src="/js/thumb-tilt.js"></script>
+</Base>

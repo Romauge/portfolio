@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+<Base title="Error 404">
+    <section id="body-wrapper" class="section">
+        <div class="container">
+            <div id="error">
+                <div>
+                    <h1>Error 404</h1>
+                    <p set:html="<p>Woops. Looks like this page doesn't exist.</p>" />
+                    <p><a class="btn" href="/"><Icon name="home" size={24} class="icon-inline" /> Back home</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</Base>

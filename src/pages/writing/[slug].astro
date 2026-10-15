@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ArticleScripts from '../../components/ArticleScripts.astro';
+import Article from '../../components/Article.astro';
+import { htmlOf } from '../../lib/content';
+
+// La page liste /writing est volontairement absente pour le moment ;
+// les articles restent accessibles par leur adresse.
+export async function getStaticPaths() {
+  const articles = (await getCollection('writing', (e) => e.data.published)).sort((a, b) => a.id.localeCompare(b.id));
+  const link = (a) => (a ? { href: `/writing/${a.id}`, title: a.data.title } : undefined);
+  return articles.map((a, i) => ({
+    params: { slug: a.id },
+    props: { entry: a, prev: link(articles[i - 1]), next: link(articles[i + 1]) },
+  }));
+}
+const { entry, prev, next } = Astro.props;
+---
+<Base title={entry.data.title}>
+    <Article title={entry.data.title} html={htmlOf(entry)} prev={prev} next={next} />
+    <ArticleScripts slot="scripts" />
+</Base>

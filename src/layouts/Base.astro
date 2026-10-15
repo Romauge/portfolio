@@ -1,0 +1,96 @@
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+import PixelGround from '../components/PixelGround.astro';
+import { SITE } from '../site';
+
+const { title, bodyClass = 'header-fixed' } = Astro.props;
+const year = new Date().getFullYear();
+---
+<!DOCTYPE html>
+<html lang={SITE.lang} data-theme-default="auto">
+<head>
+    <meta charset="utf-8" />
+    <title>{title} | {SITE.title}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content={SITE.description} />
+
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&family=Geist+Pixel:ELSH@1..80&display=swap">
+
+    <style is:inline>
+      :root {
+        --site-accent: #e5484d;
+        --site-accent-contrast: #ffffff;
+        --site-link: #e5484d;
+        --site-focus-ring: color-mix(in oklab, #e5484d 45%, transparent);
+      }
+      :root[data-theme='dark'] {
+        --site-accent: #ff6b6b;
+        --site-accent-contrast: #ffffff;
+        --site-link: #ff6b6b;
+        --site-focus-ring: color-mix(in oklab, #ff6b6b 45%, transparent);
+      }
+    </style>
+
+    <script is:inline>
+    (function () {
+      try {
+        var d = document.documentElement;
+        var stored = localStorage.getItem('theme');
+        var pref = stored || d.getAttribute('data-theme-default') || 'auto';
+        var isDark = pref === 'dark' || (pref === 'auto' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        d.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        d.setAttribute('data-theme-preference', pref);
+        d.classList.toggle('dark', isDark);
+      } catch (e) {}
+    })();
+    </script>
+
+    <link href="/css/fonts.css" type="text/css" rel="stylesheet">
+    <link href="/css/blades.min.css" type="text/css" rel="stylesheet">
+    <link href="/css/theme.css" type="text/css" rel="stylesheet">
+    <link href="/css/custom.css" type="text/css" rel="stylesheet">
+    <link href="/css/github-markdown-alerts.css" type="text/css" rel="stylesheet">
+    <link href="/css/login.css" type="text/css" rel="stylesheet">
+    <link href="/css/form-styles.css" type="text/css" rel="stylesheet">
+    <style is:inline>
+    :root {
+        --gh-alert-note-border-color: #316dca;
+        --gh-alert-note-title-color: #316dca;
+        --gh-alert-tip-border-color: #347d39;
+        --gh-alert-tip-title-color: #347d39;
+        --gh-alert-important-border-color: #8256d0;
+        --gh-alert-important-title-color: #8256d0;
+        --gh-alert-warning-border-color: #c69026;
+        --gh-alert-warning-title-color: #c69026;
+        --gh-alert-caution-border-color: #c93c37;
+        --gh-alert-caution-title-color: #c93c37;
+    }
+    </style>
+
+    <script is:inline src="/js/theme-toggle.js"></script>
+</head>
+<body id="top" class={bodyClass}>
+    <div id="page-wrapper">
+        <ThemeToggle />
+        <main id="start">
+            <slot />
+        </main>
+    </div>
+
+    <footer id="footer" class="ui-footer">
+        <div class="ui-wrap">
+            <span>© {year} {SITE.author}</span>
+        </div>
+        <PixelGround class="ui-ground" />
+    </footer>
+
+    <script is:inline src="/js/site.js"></script>
+    <slot name="scripts" />
+</body>
+</html>

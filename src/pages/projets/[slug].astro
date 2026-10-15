@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArticleScripts from '../../components/ArticleScripts.astro';
+import Article from '../../components/Article.astro';
+import { getProjets, htmlOf } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const projets = await getProjets();
+  const link = (p) => (p ? { href: `/projets/${p.id}`, title: p.data.title } : undefined);
+  return projets.map((p, i) => ({
+    params: { slug: p.id },
+    props: { entry: p, prev: link(projets[i - 1]), next: link(projets[i + 1]) },
+  }));
+}
+const { entry, prev, next } = Astro.props;
+---
+<Base title={entry.data.title}>
+    <Article title={entry.data.title} html={htmlOf(entry)} prev={prev} next={next} />
+    <ArticleScripts slot="scripts" />
+</Base>

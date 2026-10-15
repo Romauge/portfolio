@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1288 420" role="img" aria-labelledby="t3">
+<title id="t3">À gauche, toutes les lignes apparaissent en même temps ; à droite, elles apparaissent l'une après l'autre.</title>
+<rect width="1288" height="420" fill="#fdfdfc"/>
+<text x="80" y="70" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="#1f1f1e" text-anchor="start">Sans décalage</text>
+<text x="80" y="104" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="start">tout arrive d'un coup</text>
+<rect x="80" y="140" width="440" height="30" fill="#585856" opacity="1"/>
+<rect x="80" y="188" width="440" height="30" fill="#585856" opacity="1"/>
+<rect x="80" y="236" width="440" height="30" fill="#585856" opacity="1"/>
+<rect x="80" y="284" width="440" height="30" fill="#585856" opacity="1"/>
+<rect x="80" y="332" width="440" height="30" fill="#585856" opacity="1"/>
+<text x="760" y="70" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="#1f1f1e" text-anchor="start">Avec décalage</text>
+<text x="760" y="104" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="start">une ligne après l'autre</text>
+<rect x="760" y="140" width="440" height="30" fill="#585856" opacity="1"/>
+<rect x="778" y="188" width="404" height="30" fill="#585856" opacity="0.8"/>
+<rect x="796" y="236" width="368" height="30" fill="#585856" opacity="0.55"/>
+<rect x="814" y="284" width="332" height="30" fill="#585856" opacity="0.32"/>
+<rect x="832" y="332" width="296" height="30" fill="#585856" opacity="0.14"/>
+<path d="M644 70 V380" stroke="#ddddda" stroke-width="2"/>
+</svg>

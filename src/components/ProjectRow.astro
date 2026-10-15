@@ -1,0 +1,21 @@
+---
+import Icon from './Icon.astro';
+// Une ligne de projet : vignette, titre, sous-titre, chevron au survol.
+// `image` : chemin d'une image (ex. /images/projets/cinemix.jpg) ; sans image, la 1re lettre du titre.
+const { href, title, subtitle, image } = Astro.props;
+const initial = String(title ?? '').trim().charAt(0).toUpperCase();
+---
+<a href={href} class="ui-project">
+    <span class="ui-project-main">
+        <span class="ui-thumb" aria-hidden="true">
+            <span class="ui-thumb-inner">
+                {image ? <img src={image} alt="" width="48" height="48" loading="lazy" decoding="async" /> : <span class="ui-thumb-initial">{initial}</span>}
+            </span>
+        </span>
+        <span class="ui-project-text">
+            <span class="ui-project-title">{title}</span>
+            {subtitle && <span class="ui-project-sub" set:html={subtitle} />}
+        </span>
+    </span>
+    <Icon name="chevron-right-2" class="ui-project-arrow" />
+</a>

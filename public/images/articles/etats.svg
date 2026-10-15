@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1288 420" role="img" aria-labelledby="t1">
+<title id="t1">Une ligne de liste passe de l'état caché (transparent, décalé vers le bas) à l'état final (opaque, en place).</title>
+<rect width="1288" height="420" fill="#fdfdfc"/>
+<rect x="80" y="60" width="448" height="300" fill="none" stroke="#ddddda" stroke-width="2"/>
+<text x="108" y="108" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="#1f1f1e" text-anchor="start">État de départ</text>
+<text x="108" y="142" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="start">classe .cache</text>
+<rect x="108" y="192" width="392" height="30" fill="#585856" opacity="0.28"/>
+<rect x="108" y="246" width="322" height="30" fill="#585856" opacity="0.28"/>
+<rect x="108" y="300" width="252" height="30" fill="#585856" opacity="0.28"/>
+<rect x="760" y="60" width="448" height="300" fill="none" stroke="#ddddda" stroke-width="2"/>
+<text x="788" y="108" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="#1f1f1e" text-anchor="start">État final</text>
+<text x="788" y="142" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="400" fill="#8b8b88" text-anchor="start">classe retirée</text>
+<rect x="788" y="176" width="392" height="30" fill="#585856" opacity="1"/>
+<rect x="788" y="230" width="322" height="30" fill="#585856" opacity="1"/>
+<rect x="788" y="284" width="252" height="30" fill="#585856" opacity="1"/>
+<path d="M548 210 H724" stroke="#585856" stroke-width="3" fill="none"/><path d="M708 194 L728 210 L708 226" stroke="#585856" stroke-width="3" fill="none"/>
+<text x="636" y="176" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="400" fill="#585856" text-anchor="middle">400 ms</text>
+</svg>
