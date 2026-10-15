@@ -250,13 +250,13 @@ a { font-weight: 400; text-decoration-color: rgba(88,88,86,.4); }
 :root[data-theme="dark"] a { text-decoration-color: rgba(169,169,165,.45); }
 
 /* Titres : 16px, graisse 550, interligne 26px */
-.ui-name, .ui-h2, .ui-project-title, .ui-article h1, .ui-article-body h2, .ui-article-body h3, .ui-article-body h4 {
+.ui-name, .ui-h2, .ui-project-title, .ui-job-company, .ui-article h1, .ui-article-body h2, .ui-article-body h3, .ui-article-body h4 {
   font-family: var(--ui-sans); font-size: 16px; line-height: 26px; font-weight: 550 !important; letter-spacing: 0;
 }
 .ui-name { margin: 0; }
 .title-h1h2 .ui-name { line-height: 26px; }
 .ui-h2 { margin: 0 0 20px; }
-.ui-role, .ui-project-sub { font-family: var(--ui-sans); font-size: 16px; line-height: 26px; font-style: normal; color: var(--site-text-muted); }
+.ui-role, .ui-project-sub, .ui-job-role, .ui-job-meta { font-family: var(--ui-sans); font-size: 16px; line-height: 26px; font-style: normal; color: var(--site-text-muted); }
 .ui-role { margin: 0; }
 .ui-section-head .ui-tabs-list button, .ui-section-head .ui-tabs-list button[aria-selected="true"] { font-family: var(--ui-sans); font-size: 14px; line-height: 20px; font-style: normal; font-weight: 400; }
 .ui-section-head .ui-tabs-list button[aria-selected="true"] { font-weight: 500; }
@@ -276,7 +276,7 @@ a { font-weight: 400; text-decoration-color: rgba(88,88,86,.4); }
 
 /* Titles */
 :root, :root[data-theme="light"], :root[data-theme="dark"] { --ui-title: var(--ui-ink); }
-.ui-name, .ui-h2, .ui-project-title, .ui-article h1, .ui-article-body h2, .ui-article-body h3, .ui-article-body h4 { color: var(--ui-title) !important; }
+.ui-name, .ui-h2, .ui-project-title, .ui-job-company, .ui-article h1, .ui-article-body h2, .ui-article-body h3, .ui-article-body h4 { color: var(--ui-title) !important; }
 
 /* ---------- Icônes pixel (Pixelarticons, grille 24px) ---------- */
 .ui-project-arrow { width: 24px; height: 24px; }
@@ -304,7 +304,7 @@ body { min-height: 100vh; display: flex; flex-direction: column; }
 .ui-section-head .ui-tabs-list button, .ui-section-head .ui-tabs-list button[aria-selected="true"] {
   font-family: var(--ui-pixel); font-variation-settings: "ELSH" 1; font-weight: 400 !important; letter-spacing: 0; font-synthesis: none;
 }
-.ui-role, .ui-project-title, .ui-article-body h2, .ui-article-body h3, .ui-article-body h4 {
+.ui-role, .ui-project-title, .ui-job-company, .ui-article-body h2, .ui-article-body h3, .ui-article-body h4 {
   font-family: var(--ui-sans); font-weight: 600 !important; letter-spacing: -0.02em;
 }
 .ui-prose strong, .ui-article-body strong { font-weight: 600; }
@@ -451,4 +451,23 @@ main#start > .section { margin-bottom: 0; }
 :root { --ui-avatar-bg: #e4e4e2; }
 .ui-avatar, .ui-art-avatar { border-radius: 9999px; overflow: hidden; background: var(--ui-avatar-bg); }
 .ui-avatar img, .ui-art-avatar img { object-fit: cover; }
+
+/* Où j'ai travaillé : lignes séparées par un filet, nom + rôle à gauche, site + années à droite */
+.ui-jobs { list-style: none; margin: 0; padding: 0; }
+.ui-jobs li:last-child { border-bottom: 0; }
+.ui-jobs li { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--site-divider); }
+.ui-job { display: flex; flex-direction: column; gap: 2px 16px; padding: 14px 0; text-decoration: none; font-weight: 400; }
+.ui-job-main { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 2px 12px; }
+.ui-job-role { font-weight: 400; }
+.ui-job-meta { display: flex; flex: none; align-items: baseline; gap: 12px; font-weight: 400; white-space: nowrap; }
+.ui-job-years { font-variant-numeric: tabular-nums; }
+.ui-job-site { color: var(--site-text-muted); font-weight: 400; text-decoration: none; }
+.ui-job-site:hover, .ui-job-site:focus-visible { color: var(--site-text-strong); text-decoration: none; }
+@media (min-width: 640px) {
+  .ui-job { flex-direction: row; align-items: baseline; }
+  .ui-job-main { flex-direction: row; align-items: baseline; }
+  .ui-job-meta { display: grid; grid-template-columns: 7rem 6.5rem; column-gap: 12px; }
+  .ui-job-site { grid-column: 1; justify-self: end; }
+  .ui-job-years { grid-column: 2; justify-self: end; }
+}
 

@@ -7,6 +7,14 @@ import { getProjets, htmlOf, subtitleHtml } from '../lib/content';
 const hero = await getEntry('home', 'hero');
 const long = await getEntry('home', 'bio-long');
 const projets = await getProjets();
+
+const experiences = [
+    { company: 'Matera', role: 'Staff product designer.', site: 'matera.eu', url: 'https://www.matera.eu', years: '2021 - actuel' },
+    { company: 'Bridge', role: 'Product designer.', site: 'bridgeapi.io', url: 'https://bridgeapi.io', years: '2019 - 2021' },
+    { company: 'Bankin’', role: 'Product designer.', site: 'bankin.com', url: 'https://bankin.com', years: '2019 - 2021' },
+    { company: 'Brevo', role: 'UI & UX designer.', site: 'brevo.com', url: 'https://www.brevo.com', years: '2016 - 2019' },
+    { company: 'Plyce', role: 'Webdesigner.', years: '2014 - 2016' },
+];
 ---
 <Base title="Home" bodyClass="title-center title-h1h2 header-fixed">
     <div id="hero" class="module-anchor"></div>
@@ -47,6 +55,25 @@ const projets = await getProjets();
                 <ProjectRow href={`/projets/${p.id}`} title={p.data.title} subtitle={subtitleHtml(p)} image={p.data.image} />
             ))}
         </div>
+    </section>
+    <section class="ui-section">
+        <h2 class="ui-h2">Où j’ai travaillé</h2>
+        <ul class="ui-jobs">
+            {experiences.map((e) => (
+                <li>
+                    <div class="ui-job">
+                        <span class="ui-job-main">
+                            <span class="ui-job-company">{e.company}</span>
+                            <span class="ui-job-role">{e.role}</span>
+                        </span>
+                        <span class="ui-job-meta">
+                            {e.url && <a class="ui-job-site" href={e.url} target="_blank" rel="noopener noreferrer">{e.site} ↗</a>}
+                            <span class="ui-job-years">{e.years}</span>
+                        </span>
+                    </div>
+                </li>
+            ))}
+        </ul>
     </section>
     <script is:inline src="/js/thumb-tilt.js"></script>
 </Base>
