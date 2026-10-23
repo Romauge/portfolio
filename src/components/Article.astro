@@ -3,7 +3,7 @@ import { getEntry } from 'astro:content';
 import Icon from './Icon.astro';
 // Page d'article / de projet : barre de retour vers l'accueil (chevron, avatar, nom), titre, contenu, précédent / suivant.
 // `prev` et `next` : { href, title } (facultatifs).
-const { title, html, prev, next } = Astro.props;
+const { title, html, prev, next, lede, meta } = Astro.props;
 const hero = await getEntry('home', 'hero');
 const ownerName = hero?.data.name ?? '';
 ---
@@ -15,6 +15,13 @@ const ownerName = hero?.data.name ?? '';
             <span class="ui-art-name">{ownerName}</span>
         </a>
         <h1 class="p-name">{title}</h1>
+        {(lede || meta) && (
+            <div class="ui-article-lede">
+                {lede && <p class="ui-lede">{lede}</p>}
+                {meta && <p class="ui-meta">{meta}</p>}
+            </div>
+        )}
+        {Astro.slots.has('intro') && <div class="ui-article-intro"><slot name="intro" /></div>}
         <div class="ui-article-body e-content" set:html={html} />
         {(prev || next) && (
             <nav class="ui-pager" aria-label="Autres pages">

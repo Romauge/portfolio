@@ -9,5 +9,9 @@ export default defineConfig({
   build: { format: 'file' },
   // Garde les apostrophes et guillemets droits du texte
   // (Astro les transformerait sinon en apostrophes courbes).
-  markdown: { smartypants: false },
+  markdown: {
+    smartypants: false,
+    // Coloration du code : un thème clair et un thème sombre, choisis par le CSS selon le mode du site.
+    shikiConfig: { themes: { light: 'github-light', dark: 'github-dark' }, defaultColor: false },
+  },
 });

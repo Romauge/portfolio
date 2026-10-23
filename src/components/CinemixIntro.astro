@@ -1,0 +1,168 @@
+---
+/**
+ * CinemixIntro — intro de l'étude de cas Cinemix.
+ *
+ * Calques sur une capture de base (1200 × 640 px, unités en cqw) :
+ *  - pastille en verre : fond reconstitué sans texte (pill.webp) ; la pastille
+ *    s'élargit vers la gauche, son contenu reste fixe ;
+ *  - titre de la barre (PNG blanc transparent) masqué par la pastille ;
+ *  - pochette en fondu enchaîné ; quatre lignes d'infos en cascade.
+ *
+ * mode="slide" : le titre de la barre défile verticalement (par défaut)
+ * mode="fade"  : le titre de la barre s'efface puis réapparaît
+ *
+ * Images attendues dans public/images/projets/cinemix/
+ */
+interface Props { mode?: 'slide' | 'fade'; interval?: number; dir?: string }
+const { mode = 'slide', interval = 5800, dir = '/images/projets/cinemix/' } = Astro.props;
+
+// L = bord gauche de la pastille (px) sur la capture d'origine
+const tracks = [
+  { slug: '1-amelie', L: 265, label: "Yann Tiersen – La valse d'Amélie" },
+  { slug: '2-morricone', L: 191, label: 'Ennio Morricone – The Ecstasy of Gold' },
+  { slug: '3-lion-king', L: 297, label: 'Elton John – The Circle of Life' },
+  { slug: '4-game-of-thrones', L: 233, label: 'Ramin Djawadi – Light of the Seven' },
+  { slug: '5-interstellar', L: 273, label: 'Hans Zimmer – Cornfield Chase' },
+];
+
+const c = (px: number) => `${+(px / 12).toFixed(4)}cqw`; // 1200 px = 100cqw
+const textW = (L: number) => c(736 - L - 22);
+---
+
+<figure
+  class:list={['cmx', mode]}
+  data-cmx
+  data-interval={interval}
+  data-ls={JSON.stringify(tracks.map((t) => c(t.L)))}
+  style={`--l:${c(tracks[0].L)}`}
+  aria-label={`Le plugin Cinemix dans la barre de menus macOS, menu ouvert. En ce moment : ${tracks[0].label}.`}
+>
+  <img class="base" src={dir + 'base.webp'} width="1200" height="640" alt="" />
+
+  <span class="pill"><span class="pin">
+    <img class="fill" src={dir + 'pill.webp'} alt="" />
+    {tracks.map((t, i) => (
+      <img class:list={['t', { on: i === 0 }]} src={`${dir}text-${t.slug}.png`} alt="" style={`width:${textW(t.L)}`} />
+    ))}
+  </span></span>
+
+  {tracks.map((t, i) => (
+    <img class:list={['cover', { on: i === 0 }]} src={`${dir}cover-${t.slug}.webp`} alt="" loading={i ? 'lazy' : 'eager'} />
+  ))}
+
+  {tracks.map((t, i) => (
+    <span class:list={['info', { on: i === 0 }]} style={`--img:url(${dir}info-${t.slug}.webp)`}>
+      {[0, 1, 2, 3].map((k) => <span class="ln" style={`--k:${k}`}></span>)}
+    </span>
+  ))}
+</figure>
+
+<style>
+  .cmx {
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    position: relative;
+    container-type: inline-size;
+    max-width: 100%;
+    aspect-ratio: 1200 / 640;
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #8a8478;
+  }
+  .cmx img { position: absolute; display: block; margin: 0; max-width: none; }
+  .base { inset: 0; width: 100%; height: 100%; }
+
+  /* ---- barre de menus ---- */
+  /* la pastille bouge (left/width) ; .pin la compense pour que le verre et
+     le texte restent fixes par rapport à l'écran */
+  .pill {
+    position: absolute;
+    top: 0.5cqw; height: 4cqw;                  /* y 6, h 48 */
+    left: var(--l);
+    width: calc(62cqw - var(--l));              /* bord droit fixe à x 744 */
+    border-radius: 2cqw;
+    overflow: hidden;
+    transition: left 0.7s var(--ease) 0.2s, width 0.7s var(--ease) 0.2s;
+  }
+  .pin {
+    position: absolute; top: 0; height: 100%;
+    left: calc(15.9167cqw - var(--l));          /* x 191 en coordonnées écran */
+    width: 46.0833cqw;
+    transition: left 0.7s var(--ease) 0.2s;
+  }
+  .fill { inset: 0; width: 100%; height: 100%; }
+  .t { right: 0.6667cqw; top: 0; height: 100%; opacity: 0; transition: none; }
+  .t.on { opacity: 1; transform: none; }
+
+  .fade .t { transform: translateY(0.17cqw); }
+  .fade .t.out { opacity: 0; transition: opacity 0.24s var(--ease-in); }
+  .fade .t.on { transform: none; transition: opacity 0.42s ease-out 0.62s, transform 0.5s var(--ease) 0.62s; }
+
+  .slide .pill, .slide .pin { transition-delay: 0.06s; }
+  .slide .t { transform: translateY(1.2cqw); }
+  .slide .t.out { opacity: 0; transform: translateY(-1.2cqw); transition: opacity 0.26s var(--ease-in), transform 0.34s var(--ease-in); }
+  .slide .t.on { transform: none; transition: opacity 0.36s ease-out 0.16s, transform 0.62s var(--ease) 0.16s; }
+
+  /* ---- menu ---- */
+  .cover { left: 16.6667cqw; top: 6.1667cqw; width: 15cqw; height: 14cqw; opacity: 0; }
+  .cover.out { opacity: 1; z-index: 1; }
+  .cover.on { opacity: 1; z-index: 2; transition: opacity 0.7s ease 0.12s; }
+
+  .info { position: absolute; left: 31.6667cqw; top: 8cqw; width: 58.1667cqw; height: 10.6667cqw; }
+  .ln {
+    position: absolute; left: 0; right: 0;
+    top: calc(var(--k) * 25%); height: 25%;
+    background: var(--img) 0 calc(var(--k) * 33.3333%) / 100% 400% no-repeat;
+    opacity: 0; transform: translateY(0.25cqw);
+  }
+  .info.out .ln { transform: none; transition: opacity 0.2s var(--ease-in) calc(var(--k) * 30ms); }
+  .info.on .ln {
+    opacity: 1; transform: none;
+    transition: opacity 0.4s ease-out calc(0.42s + var(--k) * 45ms), transform 0.55s var(--ease) calc(0.42s + var(--k) * 45ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cmx *, .cmx *.on, .cmx *.out { transition: none !important; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-cmx]').forEach((root) => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ls: string[] = JSON.parse(root.dataset.ls || '[]');
+    const groups = ['.t', '.cover', '.info'].map((s) => [...root.querySelectorAll(s)]);
+    const interval = Number(root.dataset.interval) || 5800;
+    const FIRST_DELAY = 2500; // image fixe à l'arrivée
+    const RESUME_DELAY = 1500; // quand on revient sur l'en-tête
+    let i = 0;
+    let timer: number | undefined;
+    let inView = false;
+    let started = false;
+
+    const step = () => {
+      const prev = i;
+      i = (i + 1) % ls.length;
+      for (const g of groups) {
+        g[prev].classList.replace('on', 'out');
+        g[i].classList.remove('out');
+        g[i].classList.add('on');
+      }
+      root.style.setProperty('--l', ls[i]);
+      setTimeout(() => groups.forEach((g) => g[prev].classList.remove('out')), 1100);
+      timer = window.setTimeout(step, interval);
+    };
+    const stop = () => { clearTimeout(timer); timer = undefined; };
+    const start = () => {
+      if (timer !== undefined || !inView || document.hidden) return;
+      timer = window.setTimeout(step, started ? RESUME_DELAY : FIRST_DELAY);
+      started = true;
+    };
+
+    new IntersectionObserver(([e]) => {
+      inView = e.isIntersecting;
+      inView ? start() : stop();
+    }, { threshold: 0.4 }).observe(root);
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+  });
+</script>

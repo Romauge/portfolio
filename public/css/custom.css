@@ -145,7 +145,7 @@ h1::before, h2::before, h3::before, h1::after, h2::after, h3::after { content: n
 .ui-anchor:hover { color: var(--site-text-strong); }
 @media (max-width: 760px) { .ui-anchor { display: none; } }
 .ui-article-body ul, .ui-article-body ol { padding-left: 1.25rem; margin: 0 0 16px; }
-.ui-article-body li { margin-bottom: 6px; }
+.ui-article-body li { margin-bottom: 12px; }
 .ui-article-body pre { background: var(--site-bg-elev); box-shadow: var(--ui-shadow); border-radius: 12px; padding: 16px; font-size: 13px; line-height: 21px; overflow-x: auto; margin: 0 0 16px; }
 .ui-article-body code { font-size: 13px; background: var(--site-hover); padding: 1px 5px; border-radius: 6px; }
 .ui-article-body pre code { background: none; padding: 0; }
@@ -340,7 +340,7 @@ body { min-height: 100vh; display: flex; flex-direction: column; }
 
 /* Vignettes de projets : deux contours conservés, coins arrondis « en pixels » (escalier).
    --s = taille d'une marche : cadre 2px, vignette 1px. Le liseré remplace l'ombre (un clip-path la couperait). */
-.ui-project, .ui-thumb, .ui-thumb::before, .ui-thumb-inner, .ui-thumb-inner::before, .ui-theme-bar, .ui-theme-bar::before, .ui-theme-bar button {
+.ui-project, .ui-thumb, .ui-thumb::before, .ui-thumb-inner, .ui-thumb-inner::before, .ui-theme-bar, .ui-theme-bar::before, .ui-theme-bar button, .ui-compare-tag {
   clip-path: polygon(
     0 calc(var(--s) * 2), var(--s) calc(var(--s) * 2), var(--s) var(--s), calc(var(--s) * 2) var(--s), calc(var(--s) * 2) 0,
     calc(100% - var(--s) * 2) 0, calc(100% - var(--s) * 2) var(--s), calc(100% - var(--s)) var(--s), calc(100% - var(--s)) calc(var(--s) * 2), 100% calc(var(--s) * 2),
@@ -468,3 +468,83 @@ a.ui-job-company:hover, a.ui-job-company:focus-visible { text-decoration: underl
 .ui-footer .ui-wrap { display: flex; align-items: center; justify-content: space-between; }
 #footer .ui-footer-link { display: inline-flex; color: var(--site-text-muted); text-decoration: none; }
 
+
+/* Titres de section des articles : un filet prolonge le titre jusqu'au bord droit */
+.ui-article-body h2 { display: flex; align-items: center; gap: 16px; }
+.ui-article-body h2::after { content: "" !important; display: block !important; flex: 1 1 24px; height: 1px; background: var(--site-divider); }
+
+
+/* ---------- Comparateur avant / après (glisser la poignée) ---------- */
+.ui-compare { --pos: 50%; --cmp-bg: color-mix(in srgb, var(--ui-ink) 14%, var(--site-bg)); position: relative; width: 100%; margin: 32px 0; aspect-ratio: 1280 / 800; overflow: hidden; background: var(--cmp-bg); box-shadow: var(--ui-shadow); border-radius: 12px; cursor: ew-resize; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.ui-article-body .ui-compare img { position: absolute; top: 0; left: 0; height: auto; max-width: none; margin: 0; border-radius: 0; box-shadow: none; background: none; pointer-events: none; -webkit-user-drag: none; }
+.ui-compare-after { width: 100%; }
+.ui-compare-before { position: absolute; inset: 0; background: var(--cmp-bg); clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.ui-compare-before img { width: 100%; }
+.ui-compare-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 28px; margin-left: -14px; display: grid; place-items: center; outline: none; }
+.ui-compare-handle::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, .25); }
+.ui-compare-knob { position: relative; width: 28px; height: 28px; display: grid; place-items: center; background: #fff; color: #1f1f1e; box-shadow: 0 0 0 1px rgba(0, 0, 0, .25), 0 2px 6px rgba(0, 0, 0, .25); clip-path: polygon(0 4px, 2px 4px, 2px 2px, 4px 2px, 4px 0, calc(100% - 4px) 0, calc(100% - 4px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 4px, 100% 4px, 100% calc(100% - 4px), calc(100% - 2px) calc(100% - 4px), calc(100% - 2px) calc(100% - 2px), calc(100% - 4px) calc(100% - 2px), calc(100% - 4px) 100%, 4px 100%, 4px calc(100% - 2px), 2px calc(100% - 2px), 2px calc(100% - 4px), 0 calc(100% - 4px)); }
+.ui-compare-knob svg { width: 24px; height: 24px; }
+.ui-compare-handle:focus-visible .ui-compare-knob { box-shadow: 0 0 0 2px var(--ui-ink); }
+.ui-compare-tag { --s: 2px; position: absolute; bottom: 8px; border-radius: 0; padding: 2px 8px; font-family: var(--ui-pixel); font-variation-settings: "ELSH" 1; font-weight: 400; font-synthesis: none; font-size: 12px; line-height: 20px; text-transform: uppercase; letter-spacing: 0; color: #fff; background: rgba(0, 0, 0, .55); pointer-events: none; }
+.ui-compare-tag-before { left: 8px; }
+.ui-compare-tag-after { right: 8px; }
+
+/* Zone d'intro d'un article (composant sous le titre) */
+.ui-article-intro { margin: 32px 0; }
+
+/* Section d'installation (page Cinemix) : texte normal, sans cadre ; seul le bloc de code garde son fond */
+.ui-article-body .ui-install > :first-child { margin-top: 0 !important; }
+.ui-article-body .ui-install > :last-child { margin-bottom: 0 !important; }
+.ui-article-body .ui-install code { background: var(--site-hover); }
+.ui-article-body .ui-install pre { margin: 32px 0; }
+.ui-article-body .ui-install pre code { background: none; }
+.ui-article-body .ui-install li > p { margin: 0 0 8px; }
+.ui-article-body .ui-install li:last-child > p { margin-bottom: 0; }
+
+/* Légendes sous les images : Geist Mono, gris clair */
+.ui-caption, .ui-figure figcaption { margin: 0; padding: 8px 0 0; font-family: var(--ui-mono); font-size: 13px; line-height: 20px; letter-spacing: 0; color: color-mix(in srgb, var(--site-text-muted) 85%, var(--site-bg)); }
+.ui-article-body .ui-figure { margin: 32px 0; }
+.ui-article-body .ui-figure > p { margin: 0; }
+.ui-article-body .ui-figure img { margin: 0; }
+.ui-article-body .ui-figure .ui-compare { margin: 0; }
+
+/* Chapô sous le titre d'un article : une phrase + une ligne de méta en mono */
+.ui-lede { margin: 0; font-size: 18px; line-height: 28px; color: var(--ui-ink); }
+.ui-meta { margin: 0; font-family: var(--ui-mono); font-size: 13px; line-height: 20px; letter-spacing: 0; color: color-mix(in srgb, var(--site-text-muted) 85%, var(--site-bg)); }
+.ui-article-lede + .ui-article-body > :first-child { margin-top: 48px !important; }
+.ui-lede + .ui-meta { margin-top: 12px; }
+/* chapô plus près du titre : 20px de marge du titre moins 12px = 8px */
+.ui-article-lede { margin-top: -12px; }
+/* Quand l'article commence par une intro (composant), son premier paragraphe est un texte normal, pas un chapô */
+.ui-article-intro + .ui-article-body > p:first-child { font-size: 16px; line-height: 26px; color: var(--site-text); }
+
+/* Éléments non textes (images, comparateur, blocs de code) : 32px au-dessus et en dessous, y compris avant un titre */
+.ui-article-body figure + h2, .ui-article-body figure + h3, .ui-article-body figure + h4,
+.ui-article-body pre + h2, .ui-article-body pre + h3, .ui-article-body pre + h4 { margin-top: 32px !important; }
+
+/* Capture du raccourci Cinemix : fond blanc derrière les marges transparentes de l'image */
+.ui-article-body img[src*="cinemix-raccourci"] { background: #fff; }
+
+/* Code dans une phrase : fond blanc et fine bordure, comme sur jakub.kr */
+.ui-article-body :not(pre) > code { background: #fff; border: 1px solid color-mix(in srgb, var(--ui-ink) 10%, transparent); border-radius: 6px; padding: 2px 4px; }
+:root[data-theme="dark"] .ui-article-body :not(pre) > code { background: var(--site-bg-elev); }
+
+/* dans une liste (étapes d'installation) : le bloc de code colle à l'étape qui le précède */
+.ui-article-body li > pre { margin: 12px 0 0; }
+
+/* ---------- Blocs de code : carte blanche (coins 12px, liseré), code coloré, sans barre ---------- */
+.ui-article-body pre.astro-code { background-color: #fff !important; border-radius: 12px; box-shadow: var(--ui-shadow); padding: 12px; }
+:root[data-theme="dark"] .ui-article-body pre.astro-code { background-color: var(--site-bg-elev) !important; }
+.ui-article-body pre.astro-code code { background: none; padding: 0; font-size: 13px; line-height: 21px; }
+.ui-article-body pre.astro-code, .ui-article-body pre.astro-code span { color: var(--shiki-light); }
+:root[data-theme="dark"] .ui-article-body pre.astro-code, :root[data-theme="dark"] .ui-article-body pre.astro-code span { color: var(--shiki-dark); }
+
+/* listes : seul l'espace du li (12px) sépare deux éléments, même quand le texte est dans un paragraphe */
+.ui-article-body li > p { margin: 0; }
+
+/* Carte de lien GitHub : même mise en page qu'une ligne de projet de la home (vignette, titre, sous-titre, chevron au survol), dans une carte blanche */
+.ui-article-body .ui-gh-card { margin: 32px 0; padding: 12px 16px; background: #fff; border-radius: 12px; box-shadow: none; clip-path: none; }
+:root[data-theme="dark"] .ui-article-body .ui-gh-card { background: var(--site-bg-elev); }
+.ui-article-body .ui-gh-card:hover, .ui-article-body .ui-gh-card:focus-visible { background: var(--site-hover); }
+.ui-gh-card .ui-project-main { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.ui-gh-card .ui-gh-icon { flex: none; width: 24px; height: 24px; color: var(--ui-ink); }
