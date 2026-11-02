@@ -2,10 +2,11 @@
 import Icon from './Icon.astro';
 // Une ligne de projet : vignette, titre, sous-titre, chevron au survol.
 // `image` : chemin d'une image (ex. /images/projets/cinemix.jpg) ; sans image, la 1re lettre du titre.
-const { href, title, subtitle, image } = Astro.props;
+// `external` : lien vers un autre site, ouvert dans un nouvel onglet.
+const { href, title, subtitle, image, external = false } = Astro.props;
 const initial = String(title ?? '').trim().charAt(0).toUpperCase();
 ---
-<a href={href} class="ui-project">
+<a href={href} class="ui-project" target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>
     <span class="ui-project-main">
         <span class="ui-thumb" aria-hidden="true">
             <span class="ui-thumb-inner">

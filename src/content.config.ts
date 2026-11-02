@@ -11,7 +11,7 @@ const base = {
 
 const projets = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projets' }),
-  schema: z.object({ ...base, excerpt: z.string().optional(), image: z.string().optional(), lede: z.string().optional(), meta: z.string().optional() }),
+  schema: z.object({ ...base, excerpt: z.string().optional(), image: z.string().optional(), lede: z.string().optional(), meta: z.string().optional(), url: z.string().optional() }),
 });
 
 const writing = defineCollection({

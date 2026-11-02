@@ -1,7 +1,8 @@
 ---
 title: Cinemix
 excerpt: "Une histoire de musique"
-image: /images/projets/cinemix.svg
+image: /images/projets/cinemix.webp
+url: "https://github.com/Romauge/Cinemix"
 meta: "Side project · 2026 · Python, SwiftBar · GitHub, Claude Code"
 ---
 
@@ -79,7 +80,7 @@ Deux idées pour la suite :
 
 En attendant, vous pouvez en profiter.
 
-<a class="ui-project ui-gh-card" href="https://github.com/Romauge/Cinemix" target="_blank" rel="noopener noreferrer"><span class="ui-project-main"><svg class="ui-gh-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" shape-rendering="crispEdges"><path d="M5 2h4v2H7v2H5V2Zm0 10H3V6h2v6Zm2 2H5v-2h2v2Zm2 2v-2H7v2H3v-2H1v2h2v2h4v4h2v-4h2v-2H9Zm0 0v2H7v-2h2Zm6-12v2H9V4h6Zm4 2h-2V4h-2V2h4v4Zm0 6V6h2v6h-2Zm-2 2v-2h2v2h-2Zm-2 2v-2h2v2h-2Zm0 2h-2v-2h2v2Zm0 0h2v4h-2v-4Z"/></svg><span class="ui-project-text"><span class="ui-project-title">Romauge/Cinemix</span><span class="ui-project-sub">Le plugin SwiftBar, prêt à installer.</span></span></span><svg class="ui-project-arrow" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M9 17h2v-2h2v-2h2v-2h-2V9h-2V7H9v10Z"/></svg></a>
+<a class="ui-project ui-gh-card" href="https://github.com/Romauge/Cinemix" target="_blank" rel="noopener noreferrer"><span class="ui-project-main"><svg class="ui-gh-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" shape-rendering="crispEdges"><path d="M5 2h4v2H7v2H5V2Zm0 10H3V6h2v6Zm2 2H5v-2h2v2Zm2 2v-2H7v2H3v-2H1v2h2v2h4v4h2v-4h2v-2H9Zm0 0v2H7v-2h2Zm6-12v2H9V4h6Zm4 2h-2V4h-2V2h4v4Zm0 6V6h2v6h-2Zm-2 2v-2h2v2h-2Zm-2 2v-2h2v2h-2Zm0 2h-2v-2h2v2Zm0 0h2v4h-2v-4Z"/></svg><span class="ui-project-text"><span class="ui-project-title">Romauge/Cinemix-swiftbar</span><span class="ui-project-sub">Le plugin prêt à installer.</span></span></span><svg class="ui-project-arrow" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M9 17h2v-2h2v-2h2v-2h-2V9h-2V7H9v10Z"/></svg></a>
 
 
 ## Installation

@@ -333,7 +333,7 @@ body { min-height: 100vh; display: flex; flex-direction: column; }
 .ui-project { margin-inline: -8px; padding: 8px; border-radius: 16px; }
 .ui-project-main { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .ui-thumb { flex: none; display: flex; padding: 3px; border-radius: 8px; background: var(--site-bg); box-shadow: var(--ui-thumb-shadow); }
-.ui-thumb-inner { position: relative; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 6px; box-sizing: border-box; border-radius: 5px; overflow: hidden; background: var(--site-bg-elev); box-shadow: var(--ui-thumb-shadow); }
+.ui-thumb-inner { position: relative; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 4px; box-sizing: border-box; border-radius: 5px; overflow: hidden; background: var(--site-bg-elev); box-shadow: var(--ui-thumb-shadow); }
 .ui-thumb-inner img { width: 100%; height: 100%; object-fit: contain; display: block; filter: grayscale(1); }
 .ui-thumb-initial { font-family: var(--ui-pixel, var(--ui-sans)); font-variation-settings: "ELSH" 1; font-size: 24px; line-height: 1; color: var(--site-text-muted); user-select: none; }
 .ui-project-text { justify-content: center; }
@@ -356,31 +356,6 @@ body { min-height: 100vh; display: flex; flex-direction: column; }
 
 /* Survol d'une ligne de projet : fond aux coins arrondis « en pixels » (marche de 4px) */
 .ui-project { --s: 4px; border-radius: 0; }
-
-/* ---------- Effet « carte holographique » (noir et blanc) au survol d'une vignette ---------- */
-.ui-thumb { transform: perspective(260px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .18s ease-out; will-change: transform; }
-.ui-thumb-inner img { transition: filter .45s ease; }
-.ui-thumb-inner::after {
-  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity .3s ease;
-  background:
-    linear-gradient(115deg, transparent calc(var(--sx, 50%) - 24%), rgba(255, 255, 255, .32) var(--sx, 50%), transparent calc(var(--sx, 50%) + 24%)),
-    linear-gradient(120deg, rgba(0, 0, 0, .05), rgba(255, 255, 255, .24) 22%, rgba(0, 0, 0, .04) 44%, rgba(255, 255, 255, .24) 66%, rgba(0, 0, 0, .05) 88%);
-  background-size: 100% 100%, 220% 220%;
-  background-position: 0 0, var(--sx, 50%) var(--sy, 50%);
-}
-:root[data-theme="dark"] .ui-thumb-inner::after {
-  background:
-    linear-gradient(115deg, transparent calc(var(--sx, 50%) - 24%), rgba(255, 255, 255, .16) var(--sx, 50%), transparent calc(var(--sx, 50%) + 24%)),
-    linear-gradient(120deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, 0) 22%, rgba(255, 255, 255, .06) 44%, rgba(255, 255, 255, 0) 66%, rgba(255, 255, 255, .07) 88%);
-  background-size: 100% 100%, 220% 220%;
-  background-position: 0 0, var(--sx, 50%) var(--sy, 50%);
-}
-.ui-project:hover .ui-thumb-inner::after, .ui-project:focus-visible .ui-thumb-inner::after { opacity: 1; }
-@media (prefers-reduced-motion: reduce) {
-  .ui-thumb { transform: none; transition: none; will-change: auto; }
-  .ui-thumb-inner img { transition: none; }
-  .ui-thumb-inner::after { display: none; }
-}
 
 /* ---------- Espacements ---------- */
 /* Page : 96px en haut sur grand écran (48px sur mobile), 64px avant le pied de page */
@@ -548,3 +523,7 @@ a.ui-job-company:hover, a.ui-job-company:focus-visible { text-decoration: underl
 .ui-article-body .ui-gh-card:hover, .ui-article-body .ui-gh-card:focus-visible { background: var(--site-hover); }
 .ui-gh-card .ui-project-main { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .ui-gh-card .ui-gh-icon { flex: none; width: 24px; height: 24px; color: var(--ui-ink); }
+
+/* Avatar masqué pour le moment (pour le remettre : supprimer ces deux lignes) */
+.ui-avatar, .ui-art-avatar { display: none !important; }
+

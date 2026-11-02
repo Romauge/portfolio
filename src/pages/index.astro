@@ -54,7 +54,7 @@ const experiences = [
         <h2 class="ui-h2">Projets</h2>
         <div class="ui-projects">
             {projets.map((p) => (
-                <ProjectRow href={`/projets/${p.id}`} title={p.data.title} subtitle={subtitleHtml(p)} image={p.data.image} />
+                <ProjectRow href={p.data.url ?? `/projets/${p.id}`} external={!!p.data.url} title={p.data.title} subtitle={subtitleHtml(p)} image={p.data.image} />
             ))}
         </div>
     </section>
@@ -78,5 +78,4 @@ const experiences = [
             ))}
         </ul>
     </section>
-    <script is:inline src="/js/thumb-tilt.js"></script>
 </Base>

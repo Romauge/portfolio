@@ -1,6 +1,6 @@
 ---
-name: Romain
-role: Designer & développeur du dimanche
+name: Romain Augereau
+role: Designer
 class: ui-top
 ---
 Je suis Romain Augereau, designer depuis **plus de 10 ans**, pas toujours sous le même titre.

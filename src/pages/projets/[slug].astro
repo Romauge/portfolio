@@ -6,7 +6,8 @@ import CinemixIntro from '../../components/CinemixIntro.astro';
 import { getProjets, htmlOf } from '../../lib/content';
 
 export async function getStaticPaths() {
-  const projets = await getProjets();
+  // Un projet avec une `url` renvoie directement vers ce lien : il n'a pas de page à lui.
+  const projets = (await getProjets()).filter((p) => !p.data.url);
   const link = (p) => (p ? { href: `/projets/${p.id}`, title: p.data.title } : undefined);
   return projets.map((p, i) => ({
     params: { slug: p.id },
